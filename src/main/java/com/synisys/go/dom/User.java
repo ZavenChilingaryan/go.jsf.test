@@ -13,6 +13,28 @@ public class User {
     private String login;
     private String password;
     private Date birthDate = new Date();
+    private boolean married;
+    private String genders;
+    private Location location;
+    private  String description;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
 
     public String getName() {
         return name;
@@ -62,11 +84,36 @@ public class User {
         this.password = password;
     }
 
+    public boolean isMarried() {
+        return married;
+    }
+
+    public String getGenders() {
+        return genders;
+    }
+
+    public void setGenders(String genders) {
+        this.genders = genders;
+    }
+
+    public void setMarried(boolean marrid) {
+        this.married = marrid;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "name='" + name + '\'' +
-                ", lastName='" + lastName + '\'' + age +
+                ", lastName='" + lastName + '\'' +
+                ", age=" + age +
+                ", phone='" + phone + '\'' +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", birthDate=" + birthDate +
+                ", married=" + married +
+                ", genders='" + genders + '\'' +
+                ", location=" + location +
+                ", description='" + description + '\'' +
                 '}';
     }
 }

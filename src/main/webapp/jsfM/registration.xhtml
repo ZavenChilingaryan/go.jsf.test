@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:C="http://java.sun.com/jsp/jstl/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+<f:view>
+
+   <h:head>
+
+   </h:head>
+
+    <h:body>
+
+
+            <h:form>
+                <h:outputLabel value="name" for="name"/><br/>
+                <h:inputText id="name"  value="#{user.name}" maxlength="30"  /><br/>
+                <h:outputLabel value="lastName" for="lastName"/><br/>
+                <h:inputText id ="lastName" value="#{user.lastName}" maxlength="30"/><br/>
+                <h:outputLabel value="arg" for="arg"/><br/>
+                <h:inputText id="arg" value="#{user.age}" maxlength="3" /><br/>
+
+                <h:selectBooleanCheckbox   value="#{user.married}" id="Married"/>
+                <h:outputLabel value="Married" for="Married"/><br/>
+
+                <h:selectOneRadio value="#{user.genders}" >
+                    <f:selectItem  itemValue="male" itemLabel="Male"/>
+                    <f:selectItem  itemValue="fimale" itemLabel="Fimale"/>
+                </h:selectOneRadio><br/>
+
+                <h:selectOneMenu converter="locationConvert" value="#{user.location}">
+                    <f:attribute name="locations" value="#{locationDAO.locations}"/>
+                    <c:forEach  items="#{locationDAO.locations}" var="location">
+
+                    <f:selectItem  itemValue="#{location}" itemLabel="#{location.name}" />
+
+                    </c:forEach>
+
+                </h:selectOneMenu><br/>
+
+                <h:outputLabel value="please enter your last name" for="description"/><br/>
+                <h:inputTextarea id="description" value="#{user.description}"/><br/>
+                <h:commandButton action="#{userControler.saveUser(user)}"/>
+
+
+        </h:form>
+
+    </h:body>
+
+</f:view>
+</html>

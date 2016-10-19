@@ -16,6 +16,24 @@
         <managed-bean-scope>application</managed-bean-scope>
     </managed-bean>
 
+    <managed-bean>
+        <managed-bean-name>locationDAO</managed-bean-name>
+        <managed-bean-class>com.synisys.go.controler.LocationDAO</managed-bean-class>
+        <managed-bean-scope>application</managed-bean-scope>
+
+    </managed-bean>
+
+    <!--<managed-bean>-->
+        <!--<managed-bean-name>locationConvert</managed-bean-name>-->
+        <!--<managed-bean-class>com.synisys.go.controler.LocationConverter</managed-bean-class>-->
+        <!--<managed-bean-scope>application</managed-bean-scope>-->
+    <!--</managed-bean>-->
+    <converter>
+        <converter-id>locationConvert</converter-id>
+        <converter-class>com.synisys.go.controler.LocationConverter</converter-class>
+        </converter>
+
+
     <navigation-rule>
         <from-view-id>/registration.xhtml</from-view-id>
 
