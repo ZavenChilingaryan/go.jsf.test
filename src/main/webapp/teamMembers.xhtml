@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+    <h:dataTable value="#{team.teamMember}" var="member">
+        <h:column>
+            <f:facet name="header">First Name</f:facet>
+            #{member.firstName}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Last Name</f:facet>
+            #{member.lastName}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Age</f:facet>
+            #{member.age}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Gender</f:facet>
+            <h:outputText value="#{member.gender}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">is married</f:facet>
+            #{member.married}
+        </h:column>
+
+        <h:column>
+            <f:facet name="header">location</f:facet>
+            <h:outputText value="#{member.location}"/>
+        </h:column>
+
+    </h:dataTable>
+    <h:button value="new user" outcome="registration.xhtml"/>
+
+</f:view>
+</html>

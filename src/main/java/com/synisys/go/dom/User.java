@@ -1,29 +1,35 @@
 package com.synisys.go.dom;
 
-import java.util.Date;
-
 /**
- * Created by zaven.chilingaryan on 10/18/2016.
+ * Created by zaven.chilingaryan on 10/19/2016.
  */
 public class User {
-    private String name;
+    private String firstName;
     private String lastName;
     private Integer age;
-    private String phone;
-    private String login;
-    private String password;
-    private Date birthDate = new Date();
+    private Gender gender;
+    private boolean married;
+    private Location location;
 
-    public String getName() {
-        return name;
+    public Location getLocation() {
+        return location;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+
+    public String getFirstName() {
+        return this.firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getLastName() {
-        return lastName;
+        return this.lastName;
     }
 
     public void setLastName(String lastName) {
@@ -31,42 +37,26 @@ public class User {
     }
 
     public Integer getAge() {
-        return age;
+        return this.age;
     }
 
     public void setAge(Integer age) {
         this.age = age;
     }
 
-    public String getPhone() {
-        return phone;
+    public Gender getGender() {
+        return this.gender;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setGender(Gender gender) {
+        this.gender = gender;
     }
 
-    public String getLogin() {
-        return login;
+    public boolean isMarried() {
+        return this.married;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "name='" + name + '\'' +
-                ", lastName='" + lastName + '\'' + age +
-                '}';
+    public void setMarried(boolean married) {
+        this.married = married;
     }
 }

@@ -11,30 +11,30 @@
     </h:head>
     <h:body>
         <h:form>
-            <h:outputLabel value="please enter your name" for="name"/>
-            <h:inputText id="name" value="#{user.name}"/>
-            <br/>
-            <h:outputLabel value="please enter your last name" for="lname"/>
-            <h:inputText id="lname" value="#{user.lastName}"/>
-            <br/>
-            <h:outputLabel value="please enter your age" for="age"/>
+            <h:outputLabel value="please enter your name" for="name"/><br/>
+            <h:inputText id="name" value="#{user.firstName}"/><br/>
+            <h:outputLabel value="please enter your last name" for="lname"/><br/>
+            <h:inputText id="lname" value="#{user.lastName}"/><br/>
+            <h:outputLabel value="please enter your age" for="age"/><br/>
             <h:inputText id="age" value="#{user.age}">
                 <f:convertNumber longOnly="true" pattern=""/>
-            </h:inputText>
-            <br/>
-            <h:outputLabel value="please enter your phone" for="phone"/>
-            <h:inputText id="phone" value="#{user.phone}"/>
-            <br/>
-            <h:outputLabel value="please enter your login" for="login"/>
-            <h:inputText id="login" value="#{user.login}"/>
-            <br/>
-            <h:outputLabel value="please enter password" for="password"/>
-            <h:inputText id="password" value="#{user.password}"/>
-            <br/>
-            <h:commandButton value="submit" action="#{userControler.saveUser(user)}"/>
-            <h:commandButton value="submit1" action="#{userControler.saveUser()}"/>
+            </h:inputText><br/>
+            <h:outputLabel value="choos your gender" for="gender"/>
+            <h:selectOneMenu converter="GenderConverter" id="gender" value="#{user.gender}"><br/>
+                <f:attribute name="genders" value="#{itemsHolder.genders}"/>
+                <f:selectItems value="#{itemsHolder.genders}" var="item" itemLabel="#{item.name}" itemValue="#{item}"/>
+            </h:selectOneMenu><br/>
+            <h:outputLabel value="Are you marred?"><br/>
+                <h:selectBooleanCheckbox value="#{user.married}" required="true"/>
+            </h:outputLabel><br/>
+            <h:outputLabel value="choos your location" for="location"/><br/>
+            <h:selectOneMenu id="location" value="#{user.location}">
+                <f:attribute name="locations" value="#{itemsHolder.locations}"/>
+                <f:selectItems value="#{itemsHolder.locations}" var="item1" itemLabel="#{item1.name}" itemValue="#{item1}"/>
+            </h:selectOneMenu><br/>
 
-
+            <h:commandButton value="add" action="#{userController.addUser(user)}"/>
+            <!--<h:commandButton value="reset" action=""/>-->
 
 
         </h:form>
