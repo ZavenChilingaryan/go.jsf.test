@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+    <h:head>
+
+    </h:head>
+    <h:body>
+        <h:form>
+            <h:outputLabel value="please enter your name" for="name"/>
+            <h:inputText id="name" value="#{user.name}"/>
+            <br/>
+            <h:outputLabel value="please enter your last name" for="lname"/>
+            <h:inputText id="lname" value="#{user.lastName}"/>
+            <br/>
+            <h:outputLabel value="please enter your age" for="age"/>
+            <h:inputText id="age" value="#{user.age}">
+                <f:convertNumber longOnly="true" pattern=""/>
+            </h:inputText>
+            <br/>
+            <h:outputLabel value="please enter your phone" for="phone"/>
+            <h:inputText id="phone" value="#{user.phone}"/>
+            <br/>
+            <h:outputLabel value="please enter your login" for="login"/>
+            <h:inputText id="login" value="#{user.login}"/>
+            <br/>
+            <h:outputLabel value="please enter password" for="password"/>
+            <h:inputText id="password" value="#{user.password}"/>
+            <br/>
+            <h:commandButton value="submit" action="#{userControler.saveUser(user)}"/>
+            <h:commandButton value="submit1" action="#{userControler.saveUser()}"/>
+
+
+
+
+        </h:form>
+
+        <h:outputText value="some text"/>
+    </h:body>
+</f:view>
+</html>

@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
+    http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+
+    <managed-bean>
+        <managed-bean-name>user</managed-bean-name>
+        <managed-bean-class>com.synisys.go.dom.User</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>userControler</managed-bean-name>
+        <managed-bean-class>com.synisys.go.controler.UserControler</managed-bean-class>
+        <managed-bean-scope>application</managed-bean-scope>
+    </managed-bean>
+
+    <navigation-rule>
+        <from-view-id>/registration.xhtml</from-view-id>
+
+
+        <!--<navigation-case>-->
+            <!--<from-outcome>Hello</from-outcome>-->
+            <!--<if>#{user.age > 25}</if>-->
+            <!--<to-view-id>/greeting.xhtml</to-view-id>-->
+            <!--<if>#{user.age &lt; 25}</if>-->
+            <!--<to-view-id>/index.xhtml</to-view-id>-->
+        <!--</navigation-case>-->
+        <!--<navigation-case>-->
+            <!--<from-action>#{userControler.saveUser(user)}</from-action>-->
+            <!--<from-outcome>success</from-outcome>-->
+            <!--<to-view-id>/greeting.xhtml</to-view-id>-->
+        <!--</navigation-case>-->
+        <!--<navigation-case>-->
+            <!--<from-outcome>Hello</from-outcome>-->
+            <!--<to-view-id>/greeting.xhtml</to-view-id>-->
+           <!--<redirect>-->
+               <!--<redirect-param>-->
+                   <!--<name>kabashka</name>-->
+                   <!--<value>kabashka1</value>-->
+               <!--</redirect-param>-->
+           <!--</redirect>-->
+        <!--</navigation-case>-->
+
+        <!--<navigation-case>-->
+            <!--<to-view-id>/index.xhtml</to-view-id>-->
+        <!--</navigation-case>-->
+    </navigation-rule>
+
+
+  
+</faces-config>
