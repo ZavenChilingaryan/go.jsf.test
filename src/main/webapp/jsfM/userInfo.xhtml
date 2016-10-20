@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+
+    <!--<h:form id="mainForm">-->
+
+    <h:dataTable id="tableUsers" value="#{userSearch.filteredUsers}" var="user">
+        <h:column>
+            <f:facet name="header">Name</f:facet>
+            <h:outputText value=" #{user.name}"/>
+        </h:column>
+
+        <h:column>
+            <f:facet name="header">lastName</f:facet>
+            #{user.lastName}
+        </h:column>
+
+        <h:column>
+            <f:facet name="header">age</f:facet>
+            <h:outputText value="#{user.age}"/>
+        </h:column>
+
+        <h:column>
+            <f:facet name="header">genders</f:facet>
+            <h:outputText value="#{user.genders}"/>
+        </h:column>
+
+        <h:column>
+            <f:facet name="header">Married</f:facet>
+            <h:outputText value="#{user.married}"/>
+        </h:column>
+
+        <h:column>
+            <f:facet name="header">location</f:facet>
+            <h:outputText value="#{user.location.name}"/>
+        </h:column>
+
+    </h:dataTable>
+    <h:form>
+        <h:inputText id="inputAjax" value="#{userSearch.userName}"/>
+
+        <h:selectOneMenu id="selectAjax" value="#{userSearch.location}">
+            <f:attribute name="locations" value="#{locationDAO.locations}"/>
+            <f:selectItem itemLabel="all select" itemValue="#{null}"/>
+            <f:selectItems value="#{locationDAO.locations}" var="location" itemValue="#{location}"
+                           itemLabel="#{location.name}"/>
+        </h:selectOneMenu>
+
+
+        <h:commandButton value="search" actionListener="#{userSearch.filterUsers}">
+            <f:ajax execute="inputAjax selectAjax" render="tableUsers"/>
+        </h:commandButton>
+    </h:form>
+
+</f:view>
+</html>

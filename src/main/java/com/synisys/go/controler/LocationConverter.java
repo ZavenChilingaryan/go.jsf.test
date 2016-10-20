@@ -9,6 +9,7 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
 import javax.faces.convert.FacesConverter;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by meruzhan.gasparyan on 10/19/2016.
@@ -19,25 +20,33 @@ public class LocationConverter implements Converter {
 
     @Override
     public Object getAsObject(FacesContext facesContext, UIComponent uiComponent, String s) throws ConverterException {
-       ArrayList<Location> locations = (ArrayList<Location>) uiComponent.getAttributes().get("locations");
+        ArrayList<Location> locations = (ArrayList<Location>) uiComponent.getAttributes().get("locations");
+        return findLocationByName(s, locations);
+    }
 
-        for ( Location loc: locations) {
-            if(loc.getName().equals(s)){
-                return loc;
+
+    /**
+     * returns location matching the location name parameter or null in case if there is no match
+     * @param locationName
+     * @param allLocations
+     * @return
+     */
+    private Location findLocationByName(String locationName, List<Location> allLocations){
+        Location location = null;
+        for (Location currentLocation : allLocations) {
+            if(currentLocation.getName().equals(locationName)){
+                location = currentLocation;
+                break;
             }
         }
-
-        return null;
+        return location;
     }
 
     @Override
     public String getAsString(FacesContext facesContext, UIComponent uiComponent, Object o) throws ConverterException {
-
         if (o == null) {
             return "";
         }
-            Location loc = (Location) o;
-            return loc.getName();
-
+        return ((Location) o).getName();
     }
 }

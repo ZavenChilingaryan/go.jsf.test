@@ -23,27 +23,26 @@
                 <h:outputLabel value="arg" for="arg"/><br/>
                 <h:inputText id="arg" value="#{user.age}" maxlength="3" /><br/>
 
-                <h:selectBooleanCheckbox   value="#{user.married}" id="Married"/>
-                <h:outputLabel value="Married" for="Married"/><br/>
+                <h:outputLabel value="Married" for="Married"/>
+                <h:selectBooleanCheckbox   value="#{user.married}" id="Married"/><br/>
+
 
                 <h:selectOneRadio value="#{user.genders}" >
-                    <f:selectItem  itemValue="male" itemLabel="Male"/>
-                    <f:selectItem  itemValue="fimale" itemLabel="Fimale"/>
+                    <f:selectItem itemLabel="Male" itemValue="male" />
+                    <f:selectItem itemLabel="Fimale" itemValue="fimale" />
                 </h:selectOneRadio><br/>
 
                 <h:selectOneMenu converter="locationConvert" value="#{user.location}">
                     <f:attribute name="locations" value="#{locationDAO.locations}"/>
-                    <c:forEach  items="#{locationDAO.locations}" var="location">
-
-                    <f:selectItem  itemValue="#{location}" itemLabel="#{location.name}" />
-
-                    </c:forEach>
+                        <f:selectItem itemLabel="select location" itemValue="#{null}"/>
+                        <f:selectItems value="#{locationDAO.locations}" var="location" itemValue="#{location}"
+                                       itemLabel="#{location.name}"/>
 
                 </h:selectOneMenu><br/>
 
-                <h:outputLabel value="please enter your last name" for="description"/><br/>
+                <h:outputLabel value=" description" for="description"/><br/>
                 <h:inputTextarea id="description" value="#{user.description}"/><br/>
-                <h:commandButton action="#{userControler.saveUser(user)}"/>
+                <h:commandButton action="#{userController.saveUser(user)}" />
 
 
         </h:form>

@@ -11,8 +11,8 @@
     </managed-bean>
 
     <managed-bean>
-        <managed-bean-name>userControler</managed-bean-name>
-        <managed-bean-class>com.synisys.go.controler.UserControler</managed-bean-class>
+        <managed-bean-name>userController</managed-bean-name>
+        <managed-bean-class>com.synisys.go.controler.UserController</managed-bean-class>
         <managed-bean-scope>application</managed-bean-scope>
     </managed-bean>
 
@@ -23,19 +23,25 @@
 
     </managed-bean>
 
-    <!--<managed-bean>-->
-        <!--<managed-bean-name>locationConvert</managed-bean-name>-->
-        <!--<managed-bean-class>com.synisys.go.controler.LocationConverter</managed-bean-class>-->
-        <!--<managed-bean-scope>application</managed-bean-scope>-->
-    <!--</managed-bean>-->
+<managed-bean>
+    <managed-bean-name>userSearch</managed-bean-name>
+    <managed-bean-class>com.synisys.go.controler.UserSearch</managed-bean-class>
+    <managed-bean-scope>session</managed-bean-scope>
+    <managed-property>
+        <property-name>userController</property-name>
+        <value>#{userController}</value>
+    </managed-property>
+</managed-bean>
+
     <converter>
+        <converter-for-class>com.synisys.go.dom.Location</converter-for-class>
         <converter-id>locationConvert</converter-id>
         <converter-class>com.synisys.go.controler.LocationConverter</converter-class>
-        </converter>
+    </converter>
 
 
     <navigation-rule>
-        <from-view-id>/registration.xhtml</from-view-id>
+        <from-view-id>/jsfM/registration.xhtml</from-view-id>
 
 
         <!--<navigation-case>-->
@@ -46,20 +52,15 @@
             <!--<to-view-id>/index.xhtml</to-view-id>-->
         <!--</navigation-case>-->
         <!--<navigation-case>-->
-            <!--<from-action>#{userControler.saveUser(user)}</from-action>-->
+            <!--<from-action>#{userController.saveUser(user)}</from-action>-->
             <!--<from-outcome>success</from-outcome>-->
             <!--<to-view-id>/greeting.xhtml</to-view-id>-->
         <!--</navigation-case>-->
-        <!--<navigation-case>-->
-            <!--<from-outcome>Hello</from-outcome>-->
-            <!--<to-view-id>/greeting.xhtml</to-view-id>-->
-           <!--<redirect>-->
-               <!--<redirect-param>-->
-                   <!--<name>kabashka</name>-->
-                   <!--<value>kabashka1</value>-->
-               <!--</redirect-param>-->
-           <!--</redirect>-->
-        <!--</navigation-case>-->
+        <navigation-case>
+            <from-outcome>ok</from-outcome>
+            <to-view-id>/jsfM/userInfo.xhtml</to-view-id>
+            <redirect></redirect>
+               </navigation-case>
 
         <!--<navigation-case>-->
             <!--<to-view-id>/index.xhtml</to-view-id>-->

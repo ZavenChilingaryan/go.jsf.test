@@ -2,6 +2,7 @@ package com.synisys.go.controler;
 
 import com.synisys.go.dom.Location;
 
+import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 
 /**
@@ -9,33 +10,21 @@ import java.util.ArrayList;
  */
 public class LocationDAO {
 
-    private static ArrayList<Location> locations = new ArrayList<>();
+    private final ArrayList<Location> locations;
 
-    static {
-
-        locations.add(new Location());
-        locations.add(new Location());
-        locations.add(new Location());
-        locations.add(new Location());
-        locations.add(new Location());
-        locations.get(0).setId(1);
-        locations.get(1).setId(2);
-        locations.get(2).setId(3);
-        locations.get(3).setId(4);
-        locations.get(4).setId(5);
-        locations.get(0).setName("location 1");
-        locations.get(1).setName("location 2");
-        locations.get(2).setName("location 3");
-        locations.get(3).setName("location 4");
-        locations.get(4).setName("location 5");
-
+    public LocationDAO() {
+        locations = new ArrayList<>();
     }
 
-    public ArrayList<Location> getLocations(){
+    @PostConstruct
+    public void init() {
+        for (int i = 1; i < 6; i++) {
+            locations.add(new Location(i, "Location Name" + i));
+        }
+    }
+
+    public ArrayList<Location> getLocations() {
         return locations;
     }
 
-    public static void setLocations(ArrayList<Location> locations) {
-        LocationDAO.locations = locations;
-    }
 }
