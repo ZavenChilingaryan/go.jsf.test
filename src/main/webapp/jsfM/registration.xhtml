@@ -4,50 +4,61 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:C="http://java.sun.com/jsp/jstl/core"
-      xmlns:c="http://java.sun.com/jsp/jstl/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+     xmlns:p="http://primefaces.org/ui">
 <f:view>
 
-   <h:head>
 
-   </h:head>
+    <ui:composition template="Template.xhtml">
+        <ui:define name="content">
+            <h:head>
 
-    <h:body>
-
-
-            <h:form>
-                <h:outputLabel value="name" for="name"/><br/>
-                <h:inputText id="name"  value="#{user.name}" maxlength="30"  /><br/>
-                <h:outputLabel value="lastName" for="lastName"/><br/>
-                <h:inputText id ="lastName" value="#{user.lastName}" maxlength="30"/><br/>
-                <h:outputLabel value="arg" for="arg"/><br/>
-                <h:inputText id="arg" value="#{user.age}" maxlength="3" /><br/>
-
-                <h:outputLabel value="Married" for="Married"/>
-                <h:selectBooleanCheckbox   value="#{user.married}" id="Married"/><br/>
+            </h:head>
+            <h:body>
 
 
-                <h:selectOneRadio value="#{user.genders}" >
-                    <f:selectItem itemLabel="Male" itemValue="male" />
-                    <f:selectItem itemLabel="Fimale" itemValue="fimale" />
-                </h:selectOneRadio><br/>
+                <h:form>
+                    <p:outputLabel value="name" for="name"/><br/>
+                    <p:inputText id="name" value="#{user.name}" maxlength="30"/><br/>
+                    <p:outputLabel value="lastName" for="lastName"/><br/>
+                    <p:inputText id="lastName" value="#{user.lastName}" maxlength="30"/><br/>
+                    <p:outputLabel value="arg" for="arg"/><br/>
+                    <p:inputText id="arg" value="#{user.age}" maxlength="3"/><br/>
 
-                <h:selectOneMenu converter="locationConvert" value="#{user.location}">
-                    <f:attribute name="locations" value="#{locationDAO.locations}"/>
+                    <p:outputLabel value="Married" for="Married"/>
+                    <p:selectBooleanCheckbox value="#{user.married}" id="Married"/><br/>
+
+
+                    <p:selectOneRadio value="#{user.genders}">
+                        <f:selectItem itemLabel="Male" itemValue="male"/>
+                        <f:selectItem itemLabel="Fimale" itemValue="fimale"/>
+                    </p:selectOneRadio><br/>
+
+                    <p:selectOneMenu converter="locationConvert" value="#{user.location}" style="width: 125px">
+                        <f:attribute name="locations" value="#{locationDAO.locations}"/>
                         <f:selectItem itemLabel="select location" itemValue="#{null}"/>
                         <f:selectItems value="#{locationDAO.locations}" var="location" itemValue="#{location}"
                                        itemLabel="#{location.name}"/>
 
-                </h:selectOneMenu><br/>
+                    </p:selectOneMenu><br/>
 
-                <h:outputLabel value=" description" for="description"/><br/>
-                <h:inputTextarea id="description" value="#{user.description}"/><br/>
-                <h:commandButton action="#{userController.saveUser(user)}" />
+                    <p:outputLabel value=" description" for="description"/><br/>
+                    <p:inputTextarea id="description" value="#{user.description}"/><br/>
+
+                    <p:growl id="msgs" showDetail="true" />
+
+                    <p:calendar id="inline" value="#{user.birthDate}" navigator="true"   effect="fold"/>
+
+                    <p:outputLabel for="inline" value="BirthDay" />
+                    <br/>
+                    <br/>
+                    <p:commandButton value="submit" action="#{userController.saveUser(user)}"/>
+
+                </h:form>
 
 
-        </h:form>
-
-    </h:body>
-
+            </h:body>
+        </ui:define>
+    </ui:composition>
 </f:view>
 </html>

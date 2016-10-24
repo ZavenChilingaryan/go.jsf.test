@@ -32,6 +32,15 @@ public class User {
         return location;
     }
 
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public Date getBirthDate() {
+
+        return birthDate;
+    }
+
     public void setLocation(Location location) {
         this.location = location;
     }

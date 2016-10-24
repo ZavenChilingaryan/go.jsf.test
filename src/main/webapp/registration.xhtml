@@ -12,7 +12,7 @@
     <h:body>
         <h:form>
             <h:outputLabel value="please enter your name" for="name"/>
-            <h:inputText id="name" value="#{user.name}"/>
+            <h:inputText id="name" tabindex="25" value="#{user.name}"/>
             <br/>
             <h:outputLabel value="please enter your last name" for="lname"/>
             <h:inputText id="lname" value="#{user.lastName}"/>
@@ -32,7 +32,6 @@
             <h:inputText id="password" value="#{user.password}"/>
             <br/>
             <h:commandButton value="submit" action="#{userController.saveUser(user)}"/>
-            <h:commandButton value="submit1" action="#{userController.saveUser()}"/>
 
 
 
