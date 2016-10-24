@@ -15,8 +15,8 @@ public class GenderConverter implements Converter {
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) throws ConverterException {
         List<Gender> genders = (List<Gender>) component.getAttributes().get("genders");
-        for (Gender gender: genders){
-            if (gender.getName().compareToIgnoreCase(value) == 0){
+        for (Gender gender : genders) {
+            if (gender.getNameValue().equals(value)) {
                 return gender;
             }
         }
@@ -25,9 +25,9 @@ public class GenderConverter implements Converter {
 
     @Override
     public String getAsString(FacesContext context, UIComponent component, Object value) throws ConverterException {
-        if (value == null){
+        if (value == null) {
             return "";
         }
-        return ((Gender)value).toString();
+        return ((Gender) value).toString();
     }
 }

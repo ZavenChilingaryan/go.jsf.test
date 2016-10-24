@@ -15,8 +15,8 @@ public class LocationConverter implements Converter {
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) throws ConverterException {
         List<Location> locations = (List<Location>) component.getAttributes().get("locations");
-        for (Location location : locations ){
-            if (location.getName().equals(value)){
+        for (Location location : locations) {
+            if (location.getName().equals(value)) {
                 return location;
             }
         }
@@ -25,9 +25,9 @@ public class LocationConverter implements Converter {
 
     @Override
     public String getAsString(FacesContext context, UIComponent component, Object value) throws ConverterException {
-        if (value == null){
+        if (value == null) {
             return "";
         }
-        return ((Location)value).getName();
+        return ((Location) value).getName();
     }
 }

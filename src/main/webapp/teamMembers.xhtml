@@ -4,37 +4,89 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+>
 <f:view>
-    <h:dataTable value="#{team.teamMember}" var="member">
-        <h:column>
-            <f:facet name="header">First Name</f:facet>
-            #{member.firstName}
-        </h:column>
-        <h:column>
-            <f:facet name="header">Last Name</f:facet>
-            #{member.lastName}
-        </h:column>
-        <h:column>
-            <f:facet name="header">Age</f:facet>
-            #{member.age}
-        </h:column>
-        <h:column>
-            <f:facet name="header">Gender</f:facet>
-            <h:outputText value="#{member.gender}"/>
-        </h:column>
-        <h:column>
-            <f:facet name="header">is married</f:facet>
-            #{member.married}
-        </h:column>
 
-        <h:column>
-            <f:facet name="header">location</f:facet>
-            <h:outputText value="#{member.location}"/>
-        </h:column>
+    <ui:composition template="template/template.xhtml">
+        <ui:define name="content">
+            <h:body>
 
-    </h:dataTable>
-    <h:button value="new user" outcome="registration.xhtml"/>
+                <h:form id="mainForm">
+                    <h:panelGrid columns="3" id="searchPartId">
+                        <h:panelGroup>
+                            <h:outputText value="Filter by name"/>
+                            <h:inputText value="#{teamMemberFilterController.filterName.filterValue}"/>
+                        </h:panelGroup>
+                        <h:panelGroup>
+                            <h:outputText value="Filter by Location"/>
+                            <h:selectOneMenu value="#{teamMemberFilterController.filterLocation.filterValue}">
+                                <f:selectItem itemLabel="-- Filter By All Locations--" itemValue="#{null}"/>
+                                <f:selectItems value="#{itemsHolder.locations}" var="item" itemValue="#{item}"
+                                               itemLabel="#{item.name}"/>
+                                <f:attribute name="locations" value="#{itemsHolder.locations}"/>
+                            </h:selectOneMenu>
+                        </h:panelGroup>
+                        <h:panelGroup>
+                            <h:commandButton value="search"
+                                             actionListener="#{teamMemberFilterController.filterTeamMembers}">
+                                <f:ajax execute="searchPartId" render="teamMembersTableId"/>
+                            </h:commandButton>
+                        </h:panelGroup>
+                    </h:panelGrid>
+                    <h:dataTable value="#{teamMemberFilterController.filteredUsers}" var="member"
+                                 id="teamMembersTableId">
+                        <h:column>
+                            <f:facet name="header">First Name</f:facet>
+                            #{member.firstName}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Last Name</f:facet>
+                            #{member.lastName}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Birth Day</f:facet>
+                            <h:outputText value="#{member.birthDay}">
+                                <f:convertDateTime pattern="MM/dd/yyyy"/>
+
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Age</f:facet>
+                            #{member.age}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Gender</f:facet>
+                            <h:outputText value="#{member.gender}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">is married</f:facet>
+                            #{member.married}
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">location</f:facet>
+                            <h:outputText value="#{member.location}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Action</f:facet>
+                            <h:commandButton value="delete" action="#{userController.deleteUser(member)}">
+                                <f:ajax render="teamMembersTableId"/>
+                            </h:commandButton>
+                        </h:column>
+
+                    </h:dataTable>
+                    <h:button value="new user" outcome="registration.xhtml?faces-redirect=true"/>
+                    <p:poll update="@form"  listener="#{teamMemberFilterController.filterTeamMembers}" interval="10"/>
+
+
+                </h:form>
+
+            </h:body>
+        </ui:define>
+    </ui:composition>
+
 
 </f:view>
 </html>

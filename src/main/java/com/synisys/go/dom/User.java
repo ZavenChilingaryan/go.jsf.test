@@ -1,5 +1,10 @@
 package com.synisys.go.dom;
 
+import org.primefaces.model.UploadedFile;
+import sun.util.resources.LocaleData;
+
+import java.util.Date;
+
 /**
  * Created by zaven.chilingaryan on 10/19/2016.
  */
@@ -10,6 +15,16 @@ public class User {
     private Gender gender;
     private boolean married;
     private Location location;
+    private Date birthDay;
+    private String filePath;
+
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
 
     public Location getLocation() {
         return location;
@@ -58,5 +73,13 @@ public class User {
 
     public void setMarried(boolean married) {
         this.married = married;
+    }
+
+    public Date getBirthDay() {
+        return birthDay;
+    }
+
+    public void setBirthDay(Date birthDay) {
+        this.birthDay = birthDay;
     }
 }

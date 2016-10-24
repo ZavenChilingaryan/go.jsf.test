@@ -4,42 +4,78 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 <f:view>
-    <h:head>
 
-    </h:head>
-    <h:body>
-        <h:form>
-            <h:outputLabel value="please enter your name" for="name"/><br/>
-            <h:inputText id="name" value="#{user.firstName}"/><br/>
-            <h:outputLabel value="please enter your last name" for="lname"/><br/>
-            <h:inputText id="lname" value="#{user.lastName}"/><br/>
-            <h:outputLabel value="please enter your age" for="age"/><br/>
-            <h:inputText id="age" value="#{user.age}">
-                <f:convertNumber longOnly="true" pattern=""/>
-            </h:inputText><br/>
-            <h:outputLabel value="choos your gender" for="gender"/>
-            <h:selectOneMenu converter="GenderConverter" id="gender" value="#{user.gender}"><br/>
-                <f:attribute name="genders" value="#{itemsHolder.genders}"/>
-                <f:selectItems value="#{itemsHolder.genders}" var="item" itemLabel="#{item.name}" itemValue="#{item}"/>
-            </h:selectOneMenu><br/>
-            <h:outputLabel value="Are you marred?"><br/>
-                <h:selectBooleanCheckbox value="#{user.married}" required="true"/>
-            </h:outputLabel><br/>
-            <h:outputLabel value="choos your location" for="location"/><br/>
-            <h:selectOneMenu id="location" value="#{user.location}">
-                <f:attribute name="locations" value="#{itemsHolder.locations}"/>
-                <f:selectItems value="#{itemsHolder.locations}" var="item1" itemLabel="#{item1.name}" itemValue="#{item1}"/>
-            </h:selectOneMenu><br/>
+    <ui:composition template="template/template.xhtml">
 
-            <h:commandButton value="add" action="#{userController.addUser(user)}"/>
-            <!--<h:commandButton value="reset" action=""/>-->
+        <ui:define name="content">
+
+            <h:body>
+
+                <h:form  enctype="multipart/form-data">
+                    <p:messages/>
+
+                    <p:outputLabel value="please enter your name" for="firstName"/>
+                    <p:inputText id="firstName" value="#{user.firstName}" required="true"
+                                 requiredMessage="The field is Empty please enter your first name"
+                                 validatorMessage="Text is not valid"><br/>
+                        <f:validateLength minimum="2" maximum="15"/>
+                        <f:validateRegex pattern="[a-zA-Z]+"/>
+                    </p:inputText>
+                    <br/>
+                    <p:outputLabel value="please enter your last name" for="lastName"/><br/>
+                    <p:inputText id="lastName" value="#{user.lastName}" required="true"
+                                 requiredMessage="The field is Empty please enter your last name"
+                                 validatorMessage="Text is not valid">
+                        <f:validateLength minimum="2" maximum="25"/>
+                        <f:validateRegex pattern="[a-zA-Z]+"/>
+                    </p:inputText>
+                    <br/>
+                    <h:outputLabel value="Choos birth Day" for="birthDay"/><br/>
+                    <p:calendar id="birthDay" value="#{user.birthDay}"/>
+                    <br/>
+
+                    <p:outputLabel value="please enter your age" for="age"/><br/>
+                    <p:inputText id="age" value="#{user.age}" required="true"
+                                 requiredMessage="The field is Empty please enter your age">
+                        <f:convertNumber integerOnly="true" type="number"/>
+
+                    </p:inputText><br/>
+                    <p:outputLabel value="choos your gender" for="gender"/>
+                    <p:selectOneRadio id="gender" value="#{user.gender}"><br/>
+                        <f:attribute name="genders" value="#{itemsHolder.genders}"/>
+                        <f:selectItems value="#{itemsHolder.genders}" var="item" itemLabel="#{item.nameValue}"
+                                       itemValue="#{item}"/>
+                    </p:selectOneRadio><br/>
+                    <p:outputLabel value="Are you marred?"><br/>
+                        <h:selectBooleanCheckbox value="#{user.married}" required="true"/>
+                    </p:outputLabel><br/>
+                    <p:outputLabel value="choos your location" for="location"/><br/>
 
 
-        </h:form>
+                    <p:selectOneMenu id="location" value="#{user.location}" filter="true" style="width:125px">
+                        <f:attribute name="locations" value="#{itemsHolder.locations}"/>
+                        <f:selectItems value="#{itemsHolder.locations}" var="item1" itemLabel="#{item1.name}"
+                                       itemValue="#{item1}"/>
+                    </p:selectOneMenu>
+                    <br/>
+                    <p:fileUpload value="#{fileUploader.uploadedFile}" mode="simple" skinSimple="true" />
 
-        <h:outputText value="some text"/>
-    </h:body>
+                    <br/>
+
+                    <p:commandButton value="add" actionListener="#{fileUploader.upload(user)}" action="#{userController.addUser(user)}" ajax="false" />
+
+
+
+
+
+                </h:form>
+
+            </h:body>
+        </ui:define>
+
+    </ui:composition>
 </f:view>
 </html>
