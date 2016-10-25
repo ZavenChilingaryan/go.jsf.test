@@ -70,15 +70,21 @@
                             <h:outputText value="#{member.location}"/>
                         </h:column>
                         <h:column>
-                            <f:facet name="header">Action</f:facet>
-                            <h:commandButton value="delete" action="#{userController.deleteUser(member)}">
-                                <f:ajax render="teamMembersTableId"/>
-                            </h:commandButton>
+                            <f:facet name="header">Ava</f:facet>
+                            <h:panelGroup>
+                                <p:graphicImage value="#{member.filePath}" height="50"/>
+                            </h:panelGroup>
                         </h:column>
+                        <h:column>
+                            <f:facet name="header">Action</f:facet>
+                            <p:commandButton value="delete" actionListener="#{userController.deleteUser(member)}" update="@form" action="#{teamMemberFilterController.filterTeamMembers}">
+
+                            </p:commandButton>
+                        </h:column>
+
 
                     </h:dataTable>
                     <h:button value="new user" outcome="registration.xhtml?faces-redirect=true"/>
-                    <p:poll update="@form"  listener="#{teamMemberFilterController.filterTeamMembers}" interval="10"/>
 
 
                 </h:form>

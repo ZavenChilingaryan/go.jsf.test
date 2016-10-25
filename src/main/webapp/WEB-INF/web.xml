@@ -5,7 +5,7 @@
          version="3.1">
 
     <listener>
-        <listener-class>org.apache.myfaces.webapp.StartupServletContextListener</listener-class>
+        <listener-class>com.synisys.go.common.ApplicationInitializer</listener-class>
     </listener>
 
     <servlet>
@@ -22,5 +22,17 @@
         <param-name>javax.faces.PROJECT_STAGE</param-name>
         <param-value>Development</param-value>
     </context-param>
+
+    <filter>
+        <filter-name>imageResolver</filter-name>
+        <filter-class>com.synisys.go.common.ImageResolverFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>imageResolver</filter-name>
+        <url-pattern>*.JPG</url-pattern>
+        <url-pattern>*.jpg</url-pattern>
+        <url-pattern>*.JPEG</url-pattern>
+        <url-pattern>*.jpeg</url-pattern>
+    </filter-mapping>
 
 </web-app>

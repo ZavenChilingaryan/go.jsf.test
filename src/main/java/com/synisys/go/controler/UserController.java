@@ -21,9 +21,8 @@ public class UserController {
         return "OK";
     }
 
-    public String deleteUser(User user) {
-        if (teamField.deleteTeamMember(user)) ;
-        return "OK";
+    public void deleteUser(User user) {
+        teamField.deleteTeamMember(user);
     }
 
 

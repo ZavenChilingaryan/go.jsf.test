@@ -9,7 +9,6 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 
 /**
@@ -29,18 +28,15 @@ public class FileUploader {
     }
 
     private String getUniqueName(String fileName) {
-        return fileName + String.valueOf(System.currentTimeMillis());
+        return String.valueOf(System.currentTimeMillis()) + fileName;
     }
 
     public void upload(User user) throws IOException, InterruptedException {
-        String fileAbsolutePath = getApplicationPath() + File.separator + ApplicationInitializer.getUploadFolder() + File.separator + getUniqueName(uploadedFile.getFileName());
-        BufferedReadWriteStream bufferedReadWriteStream = new BufferedReadWriteStream();
-        bufferedReadWriteStream.bufferedStream(fileAbsolutePath);
-
-
-//        File file = new File(fileAbsolutePath);
-//        FileWriter fileWriter = new FileWriter(fileAbsolutePath);
-//        fileWriter.write(file.);
+        String uniqueName = getUniqueName(uploadedFile.getFileName());
+        String fileAbsolutePath = getApplicationPath() + File.separator + ApplicationInitializer.getUploadFolder() + File.separator + uniqueName;
+        BufferedReadWriteStream bufferedReadWriteStream = new BufferedReadWriteStream(uploadedFile.getInputstream(), fileAbsolutePath);
+        bufferedReadWriteStream.bufferedStream();
+        user.setFilePath(uniqueName);
     }
 
     private String getApplicationPath() {
