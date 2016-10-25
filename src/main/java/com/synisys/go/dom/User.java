@@ -1,5 +1,6 @@
 package com.synisys.go.dom;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -17,6 +18,15 @@ public class User {
     private String genders;
     private Location location;
     private  String description;
+    private  ArrayList<String> images = new ArrayList<>();
+
+    public ArrayList<String> getImages() {
+        return images;
+    }
+
+    public void setImages(String images) {
+        this.images.add(images) ;
+    }
 
     public String getDescription() {
         return description;

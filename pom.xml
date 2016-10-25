@@ -7,6 +7,7 @@
     <groupId>team.go</groupId>
     <artifactId>jsfExample</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>war</packaging>
     <dependencies>
 
         <!-- https://mvnrepository.com/artifact/org.apache.myfaces.core/myfaces-api -->
@@ -41,9 +42,16 @@
             <artifactId>primefaces-extensions</artifactId>
             <version>6.0.0</version>
         </dependency>
-
-
-
+        <dependency>
+            <groupId>com.synisys.idm.manualde</groupId>
+            <artifactId>apollo-cyborg-commons</artifactId>
+            <version>1.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>team.go</groupId>
+            <artifactId>jsfExample</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
 
 
     </dependencies>

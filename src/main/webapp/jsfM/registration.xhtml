@@ -17,7 +17,7 @@
             <h:body>
 
 
-                <h:form>
+                <h:form enctype="multipart/form-data">
                     <p:outputLabel value="name" for="name"/><br/>
                     <p:inputText id="name" value="#{user.name}" maxlength="30"/><br/>
                     <p:outputLabel value="lastName" for="lastName"/><br/>
@@ -40,7 +40,8 @@
                         <f:selectItems value="#{locationDAO.locations}" var="location" itemValue="#{location}"
                                        itemLabel="#{location.name}"/>
 
-                    </p:selectOneMenu><br/>
+                    </p:selectOneMenu>
+                    <br/>
 
                     <p:outputLabel value=" description" for="description"/><br/>
                     <p:inputTextarea id="description" value="#{user.description}"/><br/>
@@ -52,10 +53,16 @@
                     <p:outputLabel for="inline" value="BirthDay" />
                     <br/>
                     <br/>
-                    <p:commandButton value="submit" action="#{userController.saveUser(user)}"/>
+
+                    <p:growl id="messages" showDetail="true" />
+
+                    <p:fileUpload value="#{uploadImage.uploadedFile}" mode="simple" skinSimple="true"
+                                  sizeLimit="500000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>
+                    <br/>
+
+                    <p:commandButton value="Submit" ajax="false" actionListener="#{uploadImage.saveImage(user)}" action="#{userController.saveUser(user)}" />
 
                 </h:form>
-
 
             </h:body>
         </ui:define>
